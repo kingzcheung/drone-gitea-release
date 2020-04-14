@@ -4,7 +4,7 @@ WORKDIR /release/linux/amd64/
 
 COPY . .
 
-RUN export GOOS=linux \
+RUN ls -lah && pwd && export GOOS=linux \
     && export GOARCH=amd64 \
     && export CGO_ENABLED=0 \
     && export GO111MODULE=on \
