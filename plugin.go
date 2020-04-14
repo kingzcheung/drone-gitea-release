@@ -158,8 +158,22 @@ func readStringOrFile(input string) (string, error) {
 		return "", err
 	}
 	result, err := ioutil.ReadFile(input)
+	//分割
+
 	if err != nil {
 		return "", err
 	}
-	return string(result), nil
+	return splitFileContent(string(result)), nil
+}
+
+func splitFileContent(str string) string {
+
+	cs := strings.Split(str, "---")
+	if len(cs) == 0 {
+		return str
+	}
+	return strings.TrimFunc(cs[0], func(r rune) bool {
+		//remove \n
+		return r == 10
+	})
 }
