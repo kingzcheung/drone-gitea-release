@@ -3,12 +3,12 @@ FROM golang:1.14.2-alpine3.11 as builder
 
 ADD . /release/linux/amd64/
 
-RUN cd /release/linux/amd64/ && ls -lah && pwd && export GOOS=linux \
+RUN cd /release/linux/amd64/ && ls -lah /release/linux/amd64/ && pwd && export GOOS=linux \
     && export GOARCH=amd64 \
     && export CGO_ENABLED=0 \
     && export GO111MODULE=on \
     && go mod tidy \
-    && go build -v -a -tags netgo -o /release/linux/amd64/drone-gitea-release
+    && go build -v -a -tags netgo -o /release/linux/amd64/drone-gitea-release /release/linux/amd64/
 
 FROM alpine:3.10
 
