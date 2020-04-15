@@ -1,8 +1,7 @@
 FROM golang:1.14.2-alpine3.11 as builder
 
-WORKDIR /release/linux/amd64/
 
-COPY . /release/linux/amd64/
+ADD . /release/linux/amd64/
 
 RUN cd /release/linux/amd64/ && ls -lah && pwd && export GOOS=linux \
     && export GOARCH=amd64 \
